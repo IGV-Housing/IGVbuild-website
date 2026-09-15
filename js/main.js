@@ -1,20 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Nav: hide on scroll down, show on scroll up ---------- */
-  var nav = document.getElementById('siteNav');
-  if (nav) {
-    var lastScrollY = window.scrollY;
-    window.addEventListener('scroll', function () {
-      var current = window.scrollY;
-      if (current > lastScrollY && current > 80) {
-        nav.classList.add('nav--hidden');
-      } else {
-        nav.classList.remove('nav--hidden');
-      }
-      lastScrollY = current;
-    });
-  }
-
   /* ---------- Nav: mega dropdown triggers (desktop + mobile) ---------- */
   var triggers = document.querySelectorAll('.divisions[data-dropdown]');
   var megas = document.querySelectorAll('.mega[data-panel]');
@@ -71,20 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ---------- Homepage tabs (Who we serve) ---------- */
-  var tabButtons = document.querySelectorAll('.tabs__menu button');
-  var tabPanels = document.querySelectorAll('.tabs__panel');
-  tabButtons.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var key = btn.getAttribute('data-tab');
-      tabButtons.forEach(function (b) { b.classList.remove('is-active'); });
-      tabPanels.forEach(function (p) { p.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      var panel = document.querySelector('.tabs__panel[data-panel="' + key + '"]');
-      if (panel) panel.classList.add('is-active');
-    });
-  });
-
   /* ---------- Video modal (lightbox) ---------- */
   var modal = document.getElementById('videoModal');
   var modalFrame = document.getElementById('videoModalFrame');
@@ -115,27 +86,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeModal();
   });
 
-  /* ---------- Scroll-linked phrase swap ("Every ___") ---------- */
-  var scrollBlock = document.getElementById('problemScroll');
-  if (scrollBlock) {
-    var phrases = [
-      'delay costs money.',
-      'change creates risk.',
-      'unknown makes a project harder to finance, price, and deliver.'
-    ];
-    var phraseEl = scrollBlock.querySelector('[data-phrase]');
-    var lastIndex = 0;
+  /* ---------- Scroll-reveal animations ---------- */
+  var revealTargets = document.querySelectorAll(
+    '.video-band__caption, .video-band__play, .stat-item, .product-tile, .reveal-up'
+  );
 
-    window.addEventListener('scroll', function () {
-      var rect = scrollBlock.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var progress = (vh - rect.top) / (rect.height + vh);
-      progress = Math.max(0, Math.min(1, progress));
-      var index = Math.min(phrases.length - 1, Math.floor(progress * phrases.length));
-      if (index !== lastIndex || phraseEl.textContent !== phrases[index]) {
-        phraseEl.textContent = phrases[index];
-        lastIndex = index;
-      }
-    });
+  if (revealTargets.length) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
   }
 });
