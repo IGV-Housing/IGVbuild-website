@@ -1065,6 +1065,7 @@ nav.links a.cta-pill::after { display: none; }
 }
 
 .platform__circles {
+  --circle-d: clamp(118px, 9vw + 40px, 190px);
   display: flex;
   align-items: center;
   flex: none;
@@ -1072,8 +1073,8 @@ nav.links a.cta-pill::after { display: none; }
 
 .platform-circle {
   position: relative;
-  width: 172px;
-  height: 172px;
+  width: var(--circle-d);
+  height: var(--circle-d);
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.06);
@@ -1083,23 +1084,24 @@ nav.links a.cta-pill::after { display: none; }
   justify-content: center;
   text-align: center;
   color: var(--cream);
-  padding: 1rem;
-  margin-left: -32px;
+  padding: calc(var(--circle-d) * 0.093);
+  margin-left: calc(var(--circle-d) * -0.186);
   flex: none;
+  transition: width 0.2s ease, height 0.2s ease;
 }
 
 .platform-circle:first-child { margin-left: 0; }
 
 .platform-circle__logo {
-  max-width: 80px;
-  max-height: 26px;
+  max-width: calc(var(--circle-d) * 0.465);
+  max-height: calc(var(--circle-d) * 0.151);
   width: auto;
   height: auto;
   margin-bottom: 0.5rem;
 }
 
 .platform-circle__desc {
-  font-size: 0.7rem;
+  font-size: calc(var(--circle-d) * 0.065);
   opacity: 0.75;
   line-height: 1.3;
 }
@@ -1128,9 +1130,9 @@ nav.links a.cta-pill::after { display: none; }
 
 .circle-glow {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  margin-top: -8px;
+  width: calc(var(--circle-d) * 0.093);
+  height: calc(var(--circle-d) * 0.093);
+  margin-top: calc(var(--circle-d) * -0.0465);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%);
   opacity: 0.1;
@@ -1138,13 +1140,15 @@ nav.links a.cta-pill::after { display: none; }
   pointer-events: none;
 }
 
-/* Positioned at the true geometric crossing points of two overlapping 172px
-   circles (radius 86, centers 140px apart): the two circle outlines cross
-   16px inward from each box edge, and ~50px above/below the vertical center. */
+/* Positioned at the true geometric crossing points of two overlapping circles
+   (radius 0.5 * --circle-d, centers 0.814 * --circle-d apart): the two circle
+   outlines cross ~0.093 * --circle-d inward from each box edge, and ~29% of
+   --circle-d above/below the vertical center. Offsets stay proportional to
+   --circle-d so the crossing points stay accurate as the circles scale. */
 .circle-glow--right-top,
-.circle-glow--right-bottom { right: 8px; }
+.circle-glow--right-bottom { right: calc(var(--circle-d) * 0.0465); }
 .circle-glow--left-top,
-.circle-glow--left-bottom { left: 8px; }
+.circle-glow--left-bottom { left: calc(var(--circle-d) * 0.0465); }
 
 .circle-glow--right-top,
 .circle-glow--left-top { top: 21%; }
@@ -1436,7 +1440,4 @@ nav.links a.cta-pill::after { display: none; }
   .hero__actions .btn { width: 100%; }
   .mega-grid { grid-template-columns: 1fr; }
   .section-image-fade { height: 50vh; min-height: 320px; }
-  .platform-circle { width: 120px; height: 120px; margin-left: -24px; }
-  .platform-circle__logo { max-width: 60px; max-height: 20px; }
-  .platform-circle__desc { font-size: 0.6rem; }
 }
