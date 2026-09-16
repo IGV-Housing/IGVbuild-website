@@ -420,7 +420,7 @@ nav.links a.cta-pill::after { display: none; }
    ========================================================= */
 .hero {
   position: relative;
-  min-height: 94vh;
+  min-height: 93vh;
   margin-top: calc(-1 * var(--nav-height));
   padding-top: var(--nav-height);
   display: flex;
