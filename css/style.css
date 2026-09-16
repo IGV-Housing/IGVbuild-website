@@ -1405,7 +1405,8 @@ nav.links a.cta-pill::after { display: none; }
 }
 
 .catalogue-hero__text-inner {
-  max-width: 640px;
+  width: 100%;
+  max-width: 820px;
   padding: 4rem 2rem 4rem calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2));
 }
 
@@ -1605,13 +1606,15 @@ nav.links a.cta-pill::after { display: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 68px;
+  height: 68px;
   border-radius: 0.5rem;
   background: rgba(57, 156, 148, 0.12);
   color: var(--teal);
   margin-bottom: 1rem;
 }
+
+.consistency-item__icon svg { width: 36px; height: 36px; }
 
 .consistency-item h4 { font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
 .consistency-item p { font-size: 0.88rem; line-height: 1.6; color: var(--grey-text); }
