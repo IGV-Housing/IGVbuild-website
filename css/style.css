@@ -1205,7 +1205,8 @@ nav.links a.cta-pill::after { display: none; }
   height: 80vh;
   min-height: 620px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 4.5rem;
   overflow: hidden;
   color: var(--cream);
 }
