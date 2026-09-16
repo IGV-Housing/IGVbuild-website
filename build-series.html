@@ -40,10 +40,10 @@
     </a>
 
     <nav class="links" id="navMenu">
+      <button type="button" class="divisions" id="productsTrigger" data-dropdown="products" aria-expanded="false">Our Products</button>
       <button type="button" class="divisions" id="divisionsTrigger" data-dropdown="division" aria-expanded="false">IGV Divisions</button>
       <button type="button" class="divisions" id="wwsTrigger" data-dropdown="wws" aria-expanded="false">Who We Serve</button>
-      <a href="https://igvhousing.com/about" target="_blank" rel="noopener">About IGV</a>
-      <a href="https://igvhousing.com/esg--impact" target="_blank" rel="noopener">ESG Impact</a>
+      <button type="button" class="divisions" id="aboutTrigger" data-dropdown="about" aria-expanded="false">About IGV</button>
       <a href="media.html">Media &amp; Resources</a>
       <a href="contact.html" class="cta-pill">Contact Us</a>
     </nav>
@@ -54,13 +54,53 @@
   </div>
 
   <div class="mobile-menu" id="mobileMenu">
+    <button type="button" class="divisions" data-dropdown="products" aria-expanded="false">Our Products</button>
     <button type="button" class="divisions" data-dropdown="division" aria-expanded="false">IGV Divisions</button>
     <button type="button" class="divisions" data-dropdown="wws" aria-expanded="false">Who We Serve</button>
-    <a href="https://igvhousing.com/about" target="_blank" rel="noopener">About IGV</a>
-    <a href="https://igvhousing.com/esg--impact" target="_blank" rel="noopener">ESG Impact</a>
+    <button type="button" class="divisions" data-dropdown="about" aria-expanded="false">About IGV</button>
     <a href="media.html">Media &amp; Resources</a>
     <a href="contact.html" class="cta-pill">Contact Us</a>
   </div>
+  <div class="mega" data-panel="about" id="aboutMenu">
+    <div class="mega-grid mega-grid--3">
+      <a href="build-series.html" class="mega-card">
+        <img class="thumb" src="images/hybrid-1.png" alt="">
+        <div class="name">How It Works</div>
+        <p>See how our hybrid construction model combines factory precision with on-site flexibility to build faster.</p>
+        <span class="explore">Explore How It Works &rarr;</span>
+      </a>
+      <a href="https://igvhousing.com/about" target="_blank" rel="noopener" class="mega-card">
+        <img class="thumb" src="images/nav-resources.png" alt="">
+        <div class="name">About IGV</div>
+        <p>Learn who we are and how IGV is changing the way homes get built and owned.</p>
+        <span class="explore">Explore About IGV &rarr;</span>
+      </a>
+      <a href="https://www.igvhousing.com/esg" target="_blank" rel="noopener" class="mega-card">
+        <img class="thumb" src="images/get-started.png" alt="">
+        <div class="name">ESG Impact</div>
+        <p>Explore how our approach to building creates lasting value for communities and the environment.</p>
+        <span class="explore">Explore ESG Impact &rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="mega" data-panel="products" id="productsMenu">
+    <div class="mega-grid mega-grid--2">
+      <a href="igv-direct.html" class="mega-card">
+        <img class="thumb" src="images/img_007.jpg" alt="">
+        <div class="name">IGV Homes Catalogue</div>
+        <p>Pre-engineered single-family, multiplex and multi-family designs, manufactured for efficient assembly on site.</p>
+        <span class="explore">Explore IGV Homes Catalogue &rarr;</span>
+      </a>
+      <a href="contact.html" class="mega-card">
+        <img class="thumb" src="images/site-plan-aerial.png" alt="">
+        <div class="name">Municipal Approvals Platform</div>
+        <p>AI-powered site assessment, automated feasibility and pre-engineered plan approvals designed to deliver housing faster.</p>
+        <span class="explore">Explore Municipal Approvals Platform &rarr;</span>
+      </a>
+    </div>
+  </div>
+
 
   <div class="mega" data-panel="wws" id="wwsMenu">
     <div class="mega-grid">
@@ -149,27 +189,26 @@
       <div class="footer__col">
         <h5>IGV Divisions</h5>
         <ul>
-          <li><a class="footer__link" href="https://igvhousing.com/" target="_blank" rel="noopener">IGV Housing</a></li>
-          <li><a class="footer__link" href="index.html">IGV Build Systems</a></li>
+          <li><a class="footer__link" href="https://igvhousing.com/" target="_blank" rel="noopener">IGVhousing</a></li>
+          <li><a class="footer__link" href="index.html">IGVbuild systems</a></li>
           <li><a class="footer__link" href="https://igvhope.com/" target="_blank" rel="noopener">IGVhope</a></li>
-          <li><a class="footer__link" href="https://igvcapital.com/" target="_blank" rel="noopener">IGV Capital</a></li>
+          <li><a class="footer__link" href="https://igvcapital.com/" target="_blank" rel="noopener">IGVcapital</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h5>SITEMAP</h5>
         <ul>
-          <li><a class="footer__link" href="build-series.html">Build Series</a></li>
-          <li><a class="footer__link" href="igv-direct.html">IGV Direct</a></li>
+          <li><a class="footer__link" href="igv-direct.html">IGV Homes Catalogue</a></li>
+          <li><a class="footer__link" href="contact.html">Municipal Approvals Platform</a></li>
           <li><a class="footer__link" href="developers.html">Developers</a></li>
           <li><a class="footer__link" href="contractors.html">Contractors</a></li>
+          <li><a class="footer__link" href="build-series.html">How It Works</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h5>Enquiries</h5>
         <ul>
-          <li><a class="footer__link" href="https://igvhousing.com/investors" target="_blank" rel="noopener">Investor Enquiry</a></li>
-          <li><a class="footer__link" href="developers.html">Developer Partners</a></li>
-          <li><a class="footer__link" href="https://igvhousing.com/in-the-media" target="_blank" rel="noopener">Press</a></li>
+          <li><a class="footer__link" href="contact.html">Contact The Team</a></li>
         </ul>
         <div class="footer__social">
           <a href="https://www.instagram.com/igvhousing/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -185,9 +224,9 @@
     <div class="footer__bottom">
       <div>&copy; 2026 IGV Build Systems. All rights reserved.</div>
       <div class="footer__bottom-links">
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms-of-use.html">Terms</a>
-        <a href="accessibility-statement.html">Accessibility</a>
+        <a href="https://www.igvhousing.com/privacy/" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://www.igvhousing.com/terms/" target="_blank" rel="noopener">Terms</a>
+        <a href="https://www.igvhousing.com/accessibility/" target="_blank" rel="noopener">Accessibility</a>
       </div>
     </div>
   </div>
