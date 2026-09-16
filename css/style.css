@@ -908,6 +908,18 @@ nav.links a.cta-pill::after { display: none; }
   flex: none;
 }
 
+.mega-card__thumb-wrap { position: relative; }
+
+.site-plan-card__badge--sm {
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.35rem;
+  font-size: 0.65rem;
+  gap: 0.35rem;
+}
+
+.site-plan-card__badge--sm .badge-check { width: 16px; height: 16px; }
+
 /* =========================================================
    Who We Serve (card grid)
    ========================================================= */
