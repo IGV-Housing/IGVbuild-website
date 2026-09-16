@@ -165,6 +165,15 @@ section { position: relative; }
 
 .btn--stroke:hover { background-color: transparent; box-shadow: inset 0 0 0 2px var(--ink-light); color: var(--ink-light); }
 
+.btn--stroke-ink {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--ink);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.btn--stroke-ink:hover { background-color: transparent; box-shadow: inset 0 0 0 2px var(--ink-light); color: var(--ink-light); }
+
 .btn--green {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px var(--teal);
@@ -411,7 +420,7 @@ nav.links a.cta-pill::after { display: none; }
    ========================================================= */
 .hero {
   position: relative;
-  min-height: 95vh;
+  min-height: 94vh;
   margin-top: calc(-1 * var(--nav-height));
   padding-top: var(--nav-height);
   display: flex;
@@ -700,6 +709,8 @@ nav.links a.cta-pill::after { display: none; }
   margin-top: 0.5rem;
 }
 
+.heading-serif--ink { color: var(--ink); }
+
 .our-products__header .stats-eyebrow { color: var(--ink-light); }
 
 .our-products__intro {
@@ -909,6 +920,7 @@ nav.links a.cta-pill::after { display: none; }
 }
 
 .mega-card__thumb-wrap { position: relative; }
+.mega-card__thumb-wrap img.thumb { object-position: left center; }
 
 .site-plan-card__badge--sm {
   top: 0.6rem;
@@ -1352,6 +1364,239 @@ nav.links a.cta-pill::after { display: none; }
 .page-body { padding: 5rem 0 7rem; }
 .page-body p { font-size: 1.1rem; line-height: 1.7; max-width: 700px; }
 .page-body p + p { margin-top: 1.25rem; }
+
+/* =========================================================
+   IGV Homes Catalogue — bespoke page sections
+   ========================================================= */
+.catalogue-hero {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  min-height: 576px;
+}
+
+.catalogue-hero__text {
+  flex: 1 1 480px;
+  display: flex;
+  align-items: center;
+}
+
+.catalogue-hero__text-inner {
+  max-width: 540px;
+  padding: 4rem 3rem 4rem calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2));
+}
+
+.catalogue-hero__heading { margin-top: 0.5rem; margin-bottom: 1.25rem; }
+
+.catalogue-hero__lede {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.catalogue-hero__text-inner p { font-size: 0.95rem; line-height: 1.7; color: var(--grey-text); }
+.catalogue-hero__text-inner p + p { margin-top: 1rem; }
+
+.catalogue-hero__divider { border-top: 1px solid var(--line); margin: 1.75rem 0 1.25rem; }
+
+.catalogue-hero__tagline { font-size: 0.95rem; color: var(--ink); opacity: 0.85; margin-bottom: 2rem; }
+
+.catalogue-hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+.catalogue-hero__actions .btn:hover { background-color: var(--ink); color: var(--cream); }
+
+.catalogue-hero__media {
+  flex: 1 1 480px;
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.catalogue-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.catalogue-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 55%);
+}
+
+.catalogue-hero__caption {
+  position: absolute;
+  left: 2rem;
+  bottom: 1.5rem;
+  right: 2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--cream);
+  z-index: 1;
+}
+
+/* One standard of excellence */
+.catalogue-standard { padding: 6rem 0; }
+
+.catalogue-standard__title { text-align: center; margin-bottom: 2.5rem; }
+
+.catalogue-standard__row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.catalogue-standard__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  white-space: nowrap;
+  flex: none;
+}
+
+.catalogue-standard__label--right { color: var(--grey-text); }
+
+.catalogue-standard__line { flex: 1; height: 1px; background: var(--teal); opacity: 0.5; }
+
+.catalogue-standard__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.catalogue-standard__grid .model-card:nth-child(1) { transition-delay: 0s; }
+.catalogue-standard__grid .model-card:nth-child(2) { transition-delay: 0.15s; }
+.catalogue-standard__grid .model-card:nth-child(3) { transition-delay: 0.3s; }
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.model-card__image { aspect-ratio: 16 / 10; overflow: hidden; }
+.model-card__image img { width: 100%; height: 100%; object-fit: cover; }
+
+.model-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.model-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 0.5rem;
+  background: rgba(57, 156, 148, 0.12);
+  color: var(--teal);
+}
+
+.model-card__name { font-family: var(--font-serif); font-size: 1.4rem; color: var(--ink); }
+.model-card__type { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--grey-text); margin-top: 0.2rem; }
+
+.model-card__desc { padding: 1.25rem 1.5rem 0; font-size: 0.9rem; line-height: 1.6; color: var(--grey-text); }
+
+.model-card__list { padding: 1.1rem 1.5rem 0; display: flex; flex-direction: column; gap: 0.65rem; }
+
+.model-card__list li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.88rem;
+  color: var(--dark-grey);
+}
+
+.model-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9.25' stroke='%23399c94' stroke-width='1.8' fill='none'/%3E%3Cpath d='M8 12.5L10.5 15L16 9' stroke='%23399c94' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.model-card__btn {
+  margin: 2.5rem 1.5rem 1.5rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.model-card__btn:hover { background: var(--slate-dark); }
+
+/* Consistency you can put in a proforma */
+.catalogue-consistency { padding: 2rem 0 6rem; }
+.catalogue-consistency .eyebrow { color: var(--ink-light); }
+
+.catalogue-consistency__lede {
+  max-width: 720px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--grey-text);
+  margin-top: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.catalogue-consistency__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.catalogue-consistency__grid .consistency-item:nth-child(1) { transition-delay: 0s; }
+.catalogue-consistency__grid .consistency-item:nth-child(2) { transition-delay: 0.12s; }
+.catalogue-consistency__grid .consistency-item:nth-child(3) { transition-delay: 0.24s; }
+.catalogue-consistency__grid .consistency-item:nth-child(4) { transition-delay: 0.36s; }
+
+.consistency-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 0.5rem;
+  background: rgba(57, 156, 148, 0.12);
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.consistency-item h4 { font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.consistency-item p { font-size: 0.88rem; line-height: 1.6; color: var(--grey-text); }
+
+@media (max-width: 991px) {
+  .catalogue-hero__text-inner { padding-left: var(--gutter); }
+  .catalogue-standard__grid { grid-template-columns: 1fr; }
+  .catalogue-consistency__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .catalogue-standard__row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .catalogue-standard__line { display: none; }
+  .catalogue-consistency__grid { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    Video modal
