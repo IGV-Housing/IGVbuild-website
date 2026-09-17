@@ -122,11 +122,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var componentItems = document.querySelectorAll('.howitworks-components__item');
   var componentImage = document.getElementById('howitworksComponentsImage');
 
+  var componentMedia = document.querySelector('.howitworks-components__media');
+
   function activateComponent(item) {
     componentItems.forEach(function (el) { el.classList.remove('is-active'); });
     item.classList.add('is-active');
     var src = item.getAttribute('data-image');
     var alt = item.getAttribute('data-alt');
+    var needsFrame = item.getAttribute('data-frame') === 'true';
+    if (componentMedia) componentMedia.classList.toggle('howitworks-components__media--framed', needsFrame);
     if (componentImage && componentImage.getAttribute('src') !== src) {
       componentImage.style.opacity = '0';
       setTimeout(function () {
@@ -142,6 +146,34 @@ document.addEventListener('DOMContentLoaded', function () {
     item.addEventListener('focus', function () { activateComponent(item); });
     item.addEventListener('click', function () { activateComponent(item); });
   });
+
+  /* ---------- How It Works: SmartCore numbered pin overlay ---------- */
+  var smartcorePins = document.querySelectorAll('.howitworks-smartcore-detail__pin');
+  var smartcoreSteps = document.querySelectorAll('.howitworks-smartcore-detail__step');
+  var smartcoreDiagramImage = document.getElementById('smartcoreDiagramImage');
+
+  function activateSmartcoreStep(stepNum) {
+    smartcorePins.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-step') === stepNum); });
+    smartcoreSteps.forEach(function (s) { s.classList.toggle('is-active', s.getAttribute('data-step') === stepNum); });
+
+    var activePin = [].filter.call(smartcorePins, function (p) { return p.getAttribute('data-step') === stepNum; })[0];
+    var src = activePin && activePin.getAttribute('data-image');
+    if (smartcoreDiagramImage && src && smartcoreDiagramImage.getAttribute('src') !== src) {
+      smartcoreDiagramImage.style.opacity = '0';
+      setTimeout(function () {
+        smartcoreDiagramImage.setAttribute('src', src);
+        smartcoreDiagramImage.style.opacity = '1';
+      }, 150);
+    }
+  }
+
+  smartcorePins.forEach(function (pin) {
+    pin.addEventListener('click', function () { activateSmartcoreStep(pin.getAttribute('data-step')); });
+  });
+  smartcoreSteps.forEach(function (step) {
+    step.addEventListener('click', function () { activateSmartcoreStep(step.getAttribute('data-step')); });
+  });
+  if (smartcorePins.length) activateSmartcoreStep('1');
 
   /* ---------- Scroll-reveal animations ---------- */
   var revealTargets = document.querySelectorAll(
