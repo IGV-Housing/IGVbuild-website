@@ -1221,11 +1221,15 @@ nav.links a.cta-pill::after { display: none; }
   justify-content: center;
   text-align: center;
   color: var(--cream);
+  text-decoration: none;
+  cursor: pointer;
   padding: calc(var(--circle-d) * 0.093);
   margin-left: calc(var(--circle-d) * -0.186);
   flex: none;
-  transition: width 0.2s ease, height 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
+
+.platform-circle:hover { background: rgba(255, 255, 255, 0.14); }
 
 .platform-circle:first-child { margin-left: 0; }
 
@@ -3520,4 +3524,171 @@ nav.links a.cta-pill::after { display: none; }
   .mega-grid { grid-template-columns: 1fr; }
   .section-image-fade { height: 50vh; min-height: 320px; }
   .section-started { height: auto; min-height: 560px; padding: 6rem 0; }
+}
+
+/* =========================================================
+   Contractors page
+   ========================================================= */
+.contractors-hero { padding: 5rem 0; }
+
+.contractors-hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.contractors-hero__lede { font-size: 0.95rem; line-height: 1.7; color: var(--grey-text); margin: 1.5rem 0 2rem; }
+.contractors-hero__sublabel { font-size: 0.95rem; color: var(--ink); margin-bottom: 1rem; }
+
+.contractors-hero__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.contractors-hero__list li { position: relative; padding-left: 1.25rem; font-size: 0.9rem; color: var(--grey-text); }
+.contractors-hero__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--ink-light);
+}
+
+.contractors-hero__media { border-radius: 0.75rem; overflow: hidden; aspect-ratio: 4 / 3; }
+.contractors-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 900px) {
+  .contractors-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+.contractors-slow { background: var(--ink); padding: 4rem 0 5rem; }
+
+.contractors-slow__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.contractors-slow__item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.25rem;
+}
+
+.contractors-slow__item h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.contractors-slow__item p { font-size: 0.8rem; line-height: 1.6; color: var(--cream); opacity: 0.7; }
+
+.contractors-deliver { max-width: 720px; margin: 0 auto; text-align: center; }
+.contractors-deliver__intro { font-size: 0.9rem; line-height: 1.7; color: var(--cream); opacity: 0.8; margin-bottom: 3rem; }
+.contractors-deliver__heading { color: var(--cream); margin-bottom: 3rem; }
+
+.contractors-deliver__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3rem;
+  text-align: center;
+}
+
+.contractors-deliver__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-light);
+  margin-bottom: 0.85rem;
+}
+
+.contractors-deliver__item h3 { color: var(--cream); font-size: 1rem; margin-bottom: 0.5rem; }
+.contractors-deliver__item p { font-size: 0.85rem; line-height: 1.6; color: var(--cream); opacity: 0.75; }
+
+@media (max-width: 900px) {
+  .contractors-slow__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .contractors-deliver__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .contractors-slow__grid { grid-template-columns: 1fr; }
+}
+
+.contractors-included { padding: 5rem 0 6rem; }
+.contractors-included__intro { max-width: 700px; margin: 0 auto 3.5rem; text-align: center; font-size: 1.05rem; font-weight: 600; color: var(--ink); line-height: 1.6; }
+
+.contractors-included__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.contractors-included__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+.contractors-included__list li {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 1.15rem;
+  font-size: 0.9rem;
+  color: var(--grey-text);
+  border-top: 1px solid var(--line);
+}
+.contractors-included__list li:last-child { border-bottom: 1px solid var(--line); }
+.contractors-included__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-light);
+}
+
+@media (max-width: 900px) {
+  .contractors-included__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* =========================================================
+   Developers — What IGV delivers
+   ========================================================= */
+.dev-deliver { background: var(--ink); color: var(--cream); padding: 5rem 0; }
+.dev-deliver__heading { color: var(--cream); text-align: center; margin-bottom: 3rem; }
+
+.dev-deliver__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.dev-deliver__item { text-align: center; }
+
+.dev-deliver__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-light);
+  margin-bottom: 0.85rem;
+}
+
+.dev-deliver__item h3 { color: var(--cream); font-size: 1rem; margin-bottom: 0.5rem; }
+.dev-deliver__item p { font-size: 0.85rem; line-height: 1.6; color: var(--cream); opacity: 0.75; max-width: 320px; margin: 0 auto; }
+
+@media (max-width: 700px) {
+  .dev-deliver__grid { grid-template-columns: 1fr; max-width: 400px; }
 }
