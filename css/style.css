@@ -1483,7 +1483,8 @@ nav.links a.cta-pill::after { display: none; }
 .howitworks-hero__text-inner {
   width: 100%;
   max-width: 560px;
-  padding: 4rem 2rem 4rem calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2));
+  margin-left: calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2));
+  padding: 4rem 2rem 4rem 0;
 }
 
 .howitworks-hero__eyebrow { color: var(--ink-light); }
@@ -1570,7 +1571,7 @@ nav.links a.cta-pill::after { display: none; }
 .howitworks-hero__play:hover { background: var(--cream); color: var(--ink-light); }
 
 @media (max-width: 767px) {
-  .howitworks-hero__text-inner { padding-left: var(--gutter); padding-right: var(--gutter); }
+  .howitworks-hero__text-inner { margin-left: 0; padding-left: var(--gutter); padding-right: var(--gutter); }
 }
 
 /* =========================================================
@@ -1687,7 +1688,7 @@ nav.links a.cta-pill::after { display: none; }
 
 .howitworks-scale__text { flex: 1 1 380px; display: flex; align-items: center; }
 
-.howitworks-scale__text-inner { width: 100%; max-width: 560px; padding: 4rem 2rem 4rem calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2)); }
+.howitworks-scale__text-inner { width: 100%; max-width: 560px; margin-left: calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2)); padding: 4rem 2rem 4rem 0; }
 
 .howitworks-scale__eyebrow { color: var(--ink-light); }
 
@@ -1753,7 +1754,7 @@ nav.links a.cta-pill::after { display: none; }
 .howitworks-scale__banner-text strong { display: inline-block; letter-spacing: 0.5px; text-transform: uppercase; color: var(--cream); opacity: 1; font-size: 0.8rem; margin-bottom: 0.15rem; }
 
 @media (max-width: 900px) {
-  .howitworks-scale__text-inner { padding-right: var(--gutter); }
+  .howitworks-scale__text-inner { margin-left: 0; padding-left: var(--gutter); padding-right: var(--gutter); }
   .howitworks-scale__stats { padding-left: var(--gutter); padding-right: var(--gutter); }
   .howitworks-scale__stat { border-left: none; padding-left: 0; flex: 1 1 45%; margin-bottom: 1.5rem; }
 }
