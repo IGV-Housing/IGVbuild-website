@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var videoTrigger = document.getElementById('videoBandTrigger');
   var VIDEO_SRC = 'https://player.vimeo.com/video/1212682242?autoplay=1&byline=0&title=0';
 
-  function openModal() {
+  function openModal(src) {
     if (!modal || !modalFrame) return;
-    modalFrame.src = VIDEO_SRC;
+    modalFrame.src = src || VIDEO_SRC;
     modal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
@@ -76,7 +76,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = '';
   }
 
-  if (videoTrigger) videoTrigger.addEventListener('click', openModal);
+  if (videoTrigger) videoTrigger.addEventListener('click', function () { openModal(VIDEO_SRC); });
+
+  document.querySelectorAll('[data-video-src]').forEach(function (el) {
+    el.addEventListener('click', function () { openModal(el.getAttribute('data-video-src')); });
+  });
+
   if (modal) {
     modal.querySelectorAll('[data-close]').forEach(function (el) {
       el.addEventListener('click', closeModal);
