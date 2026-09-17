@@ -30,6 +30,43 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!inTrigger && !inMega) closeAllMegas();
   });
 
+  /* ---------- Nav: highlight current page/section ---------- */
+  (function highlightCurrentNav() {
+    function pageKey(href) {
+      if (!href) return null;
+      href = href.split('#')[0].split('?')[0];
+      var parts = href.split('/').filter(function (p) { return p && p !== '.' && p !== '..'; });
+      if (!parts.length) return 'index';
+      var last = parts[parts.length - 1].replace(/\.html$/, '');
+      var first = parts[0].replace(/\.html$/, '');
+      return (last === 'index' ? first : first) || 'index';
+    }
+
+    function isLocal(href) {
+      return !!href && !/^https?:\/\//i.test(href) && href.indexOf('#') !== 0 && href.indexOf('mailto:') !== 0 && href.indexOf('tel:') !== 0;
+    }
+
+    var currentKey = pageKey(window.location.pathname);
+    if (currentKey === 'index') return; // homepage has no nav item of its own to highlight
+
+    document.querySelectorAll('nav.links > a, .mobile-menu > a').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!isLocal(href)) return;
+      if (pageKey(href) === currentKey) a.classList.add('is-active');
+    });
+
+    document.querySelectorAll('.divisions[data-dropdown]').forEach(function (trigger) {
+      var key = trigger.getAttribute('data-dropdown');
+      var panel = document.querySelector('.mega[data-panel="' + key + '"]');
+      if (!panel) return;
+      var matches = [].some.call(panel.querySelectorAll('a[href]'), function (a) {
+        var href = a.getAttribute('href');
+        return isLocal(href) && pageKey(href) === currentKey;
+      });
+      if (matches) trigger.classList.add('is-active');
+    });
+  })();
+
   /* ---------- Nav: mobile burger menu ---------- */
   var burger = document.getElementById('burgerBtn');
   var menu = document.getElementById('mobileMenu');
@@ -91,12 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeModal();
   });
 
-  /* ---------- How It Works hero: align media caption/play button with text-column ---------- */
+  /* ---------- How It Works hero: align media play button with text-column ---------- */
   var howMedia = document.querySelector('.howitworks-hero__media');
   var howActions = document.querySelector('.howitworks-hero__actions');
   var howPlay = document.querySelector('.howitworks-hero__play');
-  var howEyebrow = document.querySelector('.howitworks-hero__eyebrow');
-  var howCaption = document.querySelector('.howitworks-hero__caption');
 
   function syncHowItWorksHero() {
     if (!howMedia) return;
@@ -104,11 +139,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (howActions && howPlay) {
       var actionsRect = howActions.getBoundingClientRect();
       var centerY = actionsRect.top + actionsRect.height / 2 - mediaRect.top;
-      howPlay.style.top = centerY + 'px';
-    }
-    if (howEyebrow && howCaption) {
-      var eyebrowRect = howEyebrow.getBoundingClientRect();
-      howCaption.style.top = (eyebrowRect.top - mediaRect.top) + 'px';
+      if (centerY > 0 && centerY < mediaRect.height) {
+        howPlay.style.top = centerY + 'px';
+      } else {
+        howPlay.style.removeProperty('top');
+      }
     }
   }
 
@@ -146,6 +181,19 @@ document.addEventListener('DOMContentLoaded', function () {
     item.addEventListener('focus', function () { activateComponent(item); });
     item.addEventListener('click', function () { activateComponent(item); });
   });
+
+  /* ---------- Package items: jump to and activate the matching component ---------- */
+  document.querySelectorAll('.howitworks-package__item[href^="#component-"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) activateComponent(target);
+    });
+  });
+
+  if (location.hash.indexOf('#component-') === 0) {
+    var initialTarget = document.querySelector(location.hash);
+    if (initialTarget) activateComponent(initialTarget);
+  }
 
   /* ---------- How It Works: SmartCore numbered pin overlay ---------- */
   var smartcorePins = document.querySelectorAll('.howitworks-smartcore-detail__pin');
