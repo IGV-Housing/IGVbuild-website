@@ -99,7 +99,7 @@ section { position: relative; }
 
 .heading-1--ink { color: var(--ink); }
 
-.muni-hero-title { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 4rem); }
+.muni-hero-title, .segment-hero-title { font-size: clamp(2.25rem, 1.6rem + 2.6vw, 4rem); }
 
 .heading-2 {
   font-size: var(--h2-size);
@@ -408,6 +408,7 @@ nav.links a.cta-pill::after { display: none; }
 
 .mega-card { display: flex; flex-direction: column; height: 100%; }
 .mega-card img.thumb { border-radius: 10px; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 14px; width: 100%; }
+.mega-card img.thumb[src*="IGV Homes Catalogue"] { object-position: 68% center; }
 .mega-card img.mega-logo { height: 22px; width: auto; margin-bottom: 10px; }
 .mega-card .name { font-weight: 700; font-size: 13px; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 8px; }
 .mega-card p { font-size: 12.5px; line-height: 1.55; color: #444; margin: 0 0 12px; max-width: none; }
@@ -3538,7 +3539,12 @@ nav.links a.cta-pill::after { display: none; }
   align-items: center;
 }
 
+.contractors-hero__title { font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem); white-space: nowrap; }
 .contractors-hero__lede { font-size: 0.95rem; line-height: 1.7; color: var(--grey-text); margin: 1.5rem 0 2rem; }
+
+@media (max-width: 560px) {
+  .contractors-hero__title { white-space: normal; }
+}
 .contractors-hero__sublabel { font-size: 0.95rem; color: var(--ink); margin-bottom: 1rem; }
 
 .contractors-hero__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -3566,15 +3572,25 @@ nav.links a.cta-pill::after { display: none; }
 .contractors-slow__grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+  gap: 0;
   margin-bottom: 4rem;
 }
 
 .contractors-slow__item {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.75rem;
-  padding: 1.5rem 1.25rem;
+  padding: 0 1.75rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contractors-slow__item:first-child { border-left: none; padding-left: 0; }
+
+.contractors-slow__num {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--ink-light);
+  opacity: 0.6;
+  margin-bottom: 0.75rem;
 }
 
 .contractors-slow__item h4 {
@@ -3588,15 +3604,22 @@ nav.links a.cta-pill::after { display: none; }
 
 .contractors-slow__item p { font-size: 0.8rem; line-height: 1.6; color: var(--cream); opacity: 0.7; }
 
-.contractors-deliver { max-width: 720px; margin: 0 auto; text-align: center; }
-.contractors-deliver__intro { font-size: 0.9rem; line-height: 1.7; color: var(--cream); opacity: 0.8; margin-bottom: 3rem; }
+.contractors-deliver { max-width: 1120px; margin: 0 auto; text-align: center; }
+.contractors-deliver__intro { max-width: 640px; margin: 0 auto 3rem; font-size: 0.9rem; line-height: 1.7; color: var(--cream); opacity: 0.8; }
 .contractors-deliver__heading { color: var(--cream); margin-bottom: 3rem; }
 
 .contractors-deliver__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   text-align: center;
+}
+
+.contractors-deliver__item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.75rem;
+  padding: 1.75rem 1.5rem;
 }
 
 .contractors-deliver__icon {
@@ -3614,10 +3637,17 @@ nav.links a.cta-pill::after { display: none; }
 .contractors-deliver__item h3 { color: var(--cream); font-size: 1rem; margin-bottom: 0.5rem; }
 .contractors-deliver__item p { font-size: 0.85rem; line-height: 1.6; color: var(--cream); opacity: 0.75; }
 
+.contractors-deliver__item:nth-child(1) { transition-delay: 0s; }
+.contractors-deliver__item:nth-child(2) { transition-delay: 0.12s; }
+.contractors-deliver__item:nth-child(3) { transition-delay: 0.24s; }
+.contractors-deliver__item:nth-child(4) { transition-delay: 0.36s; }
+.contractors-deliver__item:nth-child(5) { transition-delay: 0.48s; }
+.contractors-deliver__item:nth-child(6) { transition-delay: 0.6s; }
+
 @media (max-width: 900px) {
   .contractors-slow__grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 700px) {
+@media (max-width: 1260px) {
   .contractors-deliver__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
@@ -3642,7 +3672,7 @@ nav.links a.cta-pill::after { display: none; }
   color: var(--grey-text);
   border-top: 1px solid var(--line);
 }
-.contractors-included__list li:last-child { border-bottom: 1px solid var(--line); }
+.contractors-included__list li:first-child { border-top: none; }
 .contractors-included__list li::before {
   content: '';
   position: absolute;
@@ -3666,13 +3696,19 @@ nav.links a.cta-pill::after { display: none; }
 
 .dev-deliver__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 3rem;
-  max-width: 880px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.dev-deliver__item { text-align: center; }
+.dev-deliver__item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.75rem;
+  padding: 1.75rem 1.5rem;
+}
 
 .dev-deliver__icon {
   display: inline-flex;
@@ -3687,8 +3723,15 @@ nav.links a.cta-pill::after { display: none; }
 }
 
 .dev-deliver__item h3 { color: var(--cream); font-size: 1rem; margin-bottom: 0.5rem; }
-.dev-deliver__item p { font-size: 0.85rem; line-height: 1.6; color: var(--cream); opacity: 0.75; max-width: 320px; margin: 0 auto; }
+.dev-deliver__item p { font-size: 0.85rem; line-height: 1.6; color: var(--cream); opacity: 0.75; }
 
-@media (max-width: 700px) {
+.dev-deliver__item:nth-child(1) { transition-delay: 0s; }
+.dev-deliver__item:nth-child(2) { transition-delay: 0.12s; }
+.dev-deliver__item:nth-child(3) { transition-delay: 0.24s; }
+.dev-deliver__item:nth-child(4) { transition-delay: 0.36s; }
+.dev-deliver__item:nth-child(5) { transition-delay: 0.48s; }
+.dev-deliver__item:nth-child(6) { transition-delay: 0.6s; }
+
+@media (max-width: 1260px) {
   .dev-deliver__grid { grid-template-columns: 1fr; max-width: 400px; }
 }
