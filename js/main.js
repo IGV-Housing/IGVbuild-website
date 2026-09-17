@@ -91,6 +91,58 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeModal();
   });
 
+  /* ---------- How It Works hero: align media caption/play button with text-column ---------- */
+  var howMedia = document.querySelector('.howitworks-hero__media');
+  var howActions = document.querySelector('.howitworks-hero__actions');
+  var howPlay = document.querySelector('.howitworks-hero__play');
+  var howEyebrow = document.querySelector('.howitworks-hero__eyebrow');
+  var howCaption = document.querySelector('.howitworks-hero__caption');
+
+  function syncHowItWorksHero() {
+    if (!howMedia) return;
+    var mediaRect = howMedia.getBoundingClientRect();
+    if (howActions && howPlay) {
+      var actionsRect = howActions.getBoundingClientRect();
+      var centerY = actionsRect.top + actionsRect.height / 2 - mediaRect.top;
+      howPlay.style.top = centerY + 'px';
+    }
+    if (howEyebrow && howCaption) {
+      var eyebrowRect = howEyebrow.getBoundingClientRect();
+      howCaption.style.top = (eyebrowRect.top - mediaRect.top) + 'px';
+    }
+  }
+
+  if (howMedia) {
+    syncHowItWorksHero();
+    window.addEventListener('resize', syncHowItWorksHero);
+    window.addEventListener('load', syncHowItWorksHero);
+  }
+
+  /* ---------- How It Works: components hover-to-explore ---------- */
+  var componentItems = document.querySelectorAll('.howitworks-components__item');
+  var componentImage = document.getElementById('howitworksComponentsImage');
+
+  function activateComponent(item) {
+    componentItems.forEach(function (el) { el.classList.remove('is-active'); });
+    item.classList.add('is-active');
+    var src = item.getAttribute('data-image');
+    var alt = item.getAttribute('data-alt');
+    if (componentImage && componentImage.getAttribute('src') !== src) {
+      componentImage.style.opacity = '0';
+      setTimeout(function () {
+        componentImage.setAttribute('src', src);
+        componentImage.setAttribute('alt', alt || '');
+        componentImage.style.opacity = '1';
+      }, 150);
+    }
+  }
+
+  componentItems.forEach(function (item) {
+    item.addEventListener('mouseenter', function () { activateComponent(item); });
+    item.addEventListener('focus', function () { activateComponent(item); });
+    item.addEventListener('click', function () { activateComponent(item); });
+  });
+
   /* ---------- Scroll-reveal animations ---------- */
   var revealTargets = document.querySelectorAll(
     '.video-band__caption, .video-band__play, .stat-item, .product-tile, .reveal-up'
