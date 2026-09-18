@@ -350,4 +350,77 @@ document.addEventListener('DOMContentLoaded', function () {
       hybridResizeTimer = setTimeout(function () { sizeHybridScrolly(); updateHybridScrolly(); }, 150);
     });
   }
+
+  /* ---------- Contact form: submit to HubSpot Forms Submission API ---------- */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    var contactStatus = document.getElementById('contactFormStatus');
+    var contactSubmitBtn = contactForm.querySelector('button[type="submit"]');
+    var portalId = contactForm.getAttribute('data-hs-portal-id');
+    var formGuid = contactForm.getAttribute('data-hs-form-guid');
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var dataConsentCheckbox = contactForm.querySelector('[name="data_consent"]');
+
+      var fields = ['firstname', 'lastname', 'email', 'company', 'igvbuild_requestcategory', 'igvbuild_projectdetails']
+        .map(function (name) {
+          var el = contactForm.querySelector('[name="' + name + '"]');
+          return { name: name, value: el ? el.value : '' };
+        })
+        .filter(function (f) { return f.value !== ''; });
+
+      var payload = {
+        fields: fields,
+        context: {
+          pageUri: window.location.href,
+          pageName: document.title
+        },
+        // NOTE: marketing_consent (communications opt-in) is not sent yet — HubSpot's API
+        // requires a real subscriptionTypeId from this portal's configured subscription
+        // types, which we don't have. Only the required data-processing consent is sent.
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: !!(dataConsentCheckbox && dataConsentCheckbox.checked),
+            text: 'I agree to allow IGV Build Systems to store and process my personal data.'
+          }
+        }
+      };
+
+      contactSubmitBtn.disabled = true;
+      contactSubmitBtn.textContent = 'Sending...';
+      contactStatus.textContent = '';
+      contactStatus.className = 'contact-form__status';
+
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + portalId + '/' + formGuid, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            contactForm.reset();
+            contactStatus.textContent = 'Thanks — your message has been sent. We’ll be in touch soon.';
+            contactStatus.className = 'contact-form__status contact-form__status--success';
+          } else {
+            console.error('HubSpot form submission error:', result.data);
+            contactStatus.textContent = 'Something went wrong sending your message. Please try again or email us directly.';
+            contactStatus.className = 'contact-form__status contact-form__status--error';
+          }
+        })
+        .catch(function (err) {
+          console.error('HubSpot form submission failed:', err);
+          contactStatus.textContent = 'Something went wrong sending your message. Please try again or email us directly.';
+          contactStatus.className = 'contact-form__status contact-form__status--error';
+        })
+        .finally(function () {
+          contactSubmitBtn.disabled = false;
+          contactSubmitBtn.textContent = 'Send message';
+        });
+    });
+  }
 });

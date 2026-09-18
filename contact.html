@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90DKQVYM1G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-90DKQVYM1G");
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact IGV Build Systems | Start a Conversation</title>
@@ -13,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="contact-page">
 
 <!-- ============ NAV ============ -->
 <header class="site-nav" id="siteNav">
@@ -165,53 +174,92 @@
 <section class="page-hero">
   <div class="container">
     <h1 class="heading-1">Contact Us</h1>
-    <p>Tell us about your project and we&rsquo;ll point you to the right IGV Build Systems solution.</p>
+    <p>Tell us about your project and we&rsquo;ll point you<br>to the right IGV Build Systems solution.</p>
   </div>
 </section>
 <section class="page-body">
   <div class="container">
-    <form class="contact-form" id="contactForm">
-      <div class="field">
-        <label for="cf-name">Full name*</label>
-        <input type="text" id="cf-name" name="name" required>
+    <div class="contact-layout">
+      <div class="contact-card">
+        <form class="contact-form" id="contactForm" data-hs-portal-id="342997618" data-hs-form-guid="19719f26-7ccf-44b1-9ef8-f6a5c4fd72d3">
+          <div class="field">
+            <label for="cf-first-name">First name*</label>
+            <input type="text" id="cf-first-name" name="firstname" required>
+          </div>
+          <div class="field">
+            <label for="cf-last-name">Last name*</label>
+            <input type="text" id="cf-last-name" name="lastname" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email*</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-company">Company</label>
+            <input type="text" id="cf-company" name="company">
+          </div>
+          <div class="field field--full">
+            <label for="cf-interest">I&rsquo;m interested in</label>
+            <select id="cf-interest" name="igvbuild_requestcategory">
+              <option>Summit</option>
+              <option>Osprey</option>
+              <option>Ridgeline</option>
+              <option>Municipal Approvals Platform</option>
+              <option>Careers</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="cf-message">Tell us about your project*</label>
+            <textarea id="cf-message" name="igvbuild_projectdetails" required></textarea>
+          </div>
+          <div class="field field--full contact-form__consent">
+            <p class="contact-form__consent-lede">By checking the boxes below, you agree to receive communications from IGV Build Systems. You can unsubscribe anytime.</p>
+            <label class="contact-form__checkbox">
+              <input type="checkbox" id="cf-marketing-consent" name="marketing_consent">
+              <span>I agree to receive other communications from IGV Build Systems.</span>
+            </label>
+            <p class="contact-form__consent-lede">To process your request, we need your permission to store and process your personal data. Please check the box below to confirm your consent.</p>
+            <label class="contact-form__checkbox">
+              <input type="checkbox" id="cf-data-consent" name="data_consent" required>
+              <span>I agree to allow IGV Build Systems to store and process my personal data. *</span>
+            </label>
+            <p class="contact-form__consent-note">We care about your privacy. Learn how we handle your data in our <a href="https://www.igvhousing.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+          </div>
+          <p class="contact-form__status" id="contactFormStatus" role="status" aria-live="polite"></p>
+          <div class="field field--full">
+            <button type="submit">Send message</button>
+          </div>
+        </form>
       </div>
-      <div class="field">
-        <label for="cf-email">Email*</label>
-        <input type="email" id="cf-email" name="email" required>
-      </div>
-      <div class="field">
-        <label for="cf-company">Company</label>
-        <input type="text" id="cf-company" name="company">
-      </div>
-      <div class="field">
-        <label for="cf-interest">I&rsquo;m interested in</label>
-        <select id="cf-interest" name="interest">
-          <option>IGV Build Series</option>
-          <option>IGV Direct</option>
-          <option>Both / not sure yet</option>
-        </select>
-      </div>
-      <div class="field field--full">
-        <label for="cf-message">Tell us about your project*</label>
-        <textarea id="cf-message" name="message" required></textarea>
-      </div>
-      <div class="field field--full">
-        <button type="submit">Send message</button>
-      </div>
-    </form>
 
-    <div class="contact-info">
-      <div>
-        <h5>General Enquiries</h5>
-        <p><a href="mailto:info@igvbuild.com">info@igvbuild.com</a></p>
-      </div>
-      <div>
-        <h5>Manufacturing Facility</h5>
-        <p>Port Alberni, BC, Canada</p>
-      </div>
-      <div>
-        <h5>IGV Housing</h5>
-        <p><a href="https://igvhousing.com/" target="_blank" rel="noopener">igvhousing.com</a></p>
+      <div class="contact-info">
+        <div class="contact-info__item">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3.5 6.5h17a1 1 0 011 1v9a1 1 0 01-1 1h-17a1 1 0 01-1-1v-9a1 1 0 011-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 7L11.1 13.2a1.6 1.6 0 001.8 0L21 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <h5>General Enquiries</h5>
+            <p><a href="mailto:info@igvbuild.com">info@igvbuild.com</a></p>
+          </div>
+        </div>
+        <div class="contact-info__item">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21.5S5 14.8 5 9.8A7 7 0 0112 2.8a7 7 0 017 7C19 14.8 12 21.5 12 21.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.8" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <div>
+            <h5>Manufacturing Facility</h5>
+            <p>Port Alberni, BC, Canada</p>
+          </div>
+        </div>
+        <div class="contact-info__item">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 21V10l8-6 8 6v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <h5>IGV Housing</h5>
+            <p><a href="https://igvhousing.com/" target="_blank" rel="noopener">igvhousing.com</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
