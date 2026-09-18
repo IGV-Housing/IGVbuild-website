@@ -2198,6 +2198,7 @@ nav.links a.cta-pill::after { display: none; }
 .howitworks-hybrid__integration-media-item.is-active { opacity: 1; }
 
 .howitworks-hybrid__integration-media-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.howitworks-hybrid__integration-media-item img[src*="5ba91728"] { object-position: 20% center; }
 
 .howitworks-hybrid__right-photo-label {
   position: absolute;
@@ -2220,9 +2221,11 @@ nav.links a.cta-pill::after { display: none; }
   .howitworks-hybrid__integration-text { opacity: 1; }
   .howitworks-hybrid__integration-fill { height: 100% !important; }
   .howitworks-hybrid__integration-layout { grid-template-columns: 1fr; }
-  .howitworks-hybrid__integration-media { order: -1; }
+  .howitworks-hybrid__integration-media { margin-top: 1.5rem; }
   .howitworks-hybrid__integration-media-item { opacity: 1; position: static; display: none; }
   .howitworks-hybrid__integration-media-item[data-step="5"] { display: block; }
+  .howitworks-hybrid__integration-icon { background: var(--teal) !important; color: var(--white) !important; }
+  .howitworks-hybrid__integration-num { background: var(--ink) !important; }
 }
 
 /* =========================================================
@@ -3977,7 +3980,7 @@ nav.links a.cta-pill::after { display: none; }
 
 .contractors-deliver { max-width: 1120px; margin: 0 auto; text-align: center; }
 .contractors-deliver__intro { max-width: 640px; margin: 0 auto 3rem; font-size: 0.9rem; line-height: 1.7; color: var(--cream); opacity: 0.8; }
-.contractors-deliver__heading { color: var(--cream); margin-bottom: 3rem; }
+.contractors-deliver__heading { color: var(--cream); margin-bottom: 3rem; font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem); }
 
 .contractors-deliver__grid {
   display: grid;
@@ -4026,6 +4029,7 @@ nav.links a.cta-pill::after { display: none; }
 }
 
 .contractors-included { padding: 5rem 0 6rem; }
+.contractors-included__heading { font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.75rem); }
 .contractors-included__intro { max-width: 700px; margin: 0 auto 3.5rem; text-align: center; font-size: 1.05rem; font-weight: 600; color: var(--ink); line-height: 1.6; }
 
 .contractors-included__grid {
