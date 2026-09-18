@@ -284,8 +284,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var hybridPanel = document.getElementById('hybridScrollyPanel');
   var hybridIntegration = document.getElementById('hybridIntegration');
   var hybridFill = document.getElementById('hybridIntegrationFill');
-  var hybridPhoto = document.getElementById('hybridResultPhoto');
+  var hybridMedia = document.getElementById('hybridIntegrationMedia');
   var hybridSteps = hybridIntegration ? [].slice.call(hybridIntegration.querySelectorAll('.howitworks-hybrid__integration-item')) : [];
+  var hybridMediaItems = hybridMedia ? [].slice.call(hybridMedia.querySelectorAll('.howitworks-hybrid__integration-media-item')) : [];
   var HYBRID_SCROLL_BUDGET_PER_STEP = 260;
   var HYBRID_BREAKPOINT = 900;
 
@@ -326,9 +327,9 @@ document.addEventListener('DOMContentLoaded', function () {
       hybridFill.style.height = Math.max(0, progress * lineHeight) + 'px';
     }
 
-    if (hybridPhoto) {
-      hybridPhoto.classList.toggle('is-revealed', progress > 0.9);
-    }
+    hybridMediaItems.forEach(function (el, i) {
+      el.classList.toggle('is-active', i === activeIndex);
+    });
   }
 
   if (hybridScrolly && hybridPanel && hybridSteps.length) {
