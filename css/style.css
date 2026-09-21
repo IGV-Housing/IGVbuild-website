@@ -412,6 +412,10 @@ nav.links a.cta-pill::after { display: none; }
 }
 .mega-grid.mega-grid--3 { grid-template-columns: repeat(3, 1fr); }
 
+/* Same principle for the 3-up About IGV panel: keep card width matched
+   to the 338px baseline used everywhere else. */
+#aboutMenu .mega-grid--3 { max-width: 1062px; }
+
 .mega-card { display: flex; flex-direction: column; height: 100%; }
 .mega-card img.thumb { border-radius: 10px; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 14px; width: 100%; }
 .mega-card img.thumb[src*="IGV Homes Catalogue"] { object-position: 68% center; }
