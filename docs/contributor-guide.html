@@ -1,0 +1,518 @@
+<title>Contributor Guide</title>
+<style>
+  :root {
+    --bg: #fffdf3;
+    --surface: #ffffff;
+    --surface-2: #f4f0e2;
+    --ink: #1a4848;
+    --ink-2: #21605c;
+    --text: #3a352e;
+    --muted: #746c60;
+    --accent: #399c94;
+    --accent-light: #58b4ad;
+    --border: rgba(26, 72, 72, 0.14);
+    --code-bg: #eef0e3;
+    --code-text: #21403d;
+    --warn-bg: #fdf1de;
+    --warn-border: #d99a3f;
+    --warn-text: #6b4b16;
+    --chip-bg: #e7f3f1;
+    --shadow: 0 1px 2px rgba(26,72,72,0.06), 0 8px 24px rgba(26,72,72,0.06);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #12211f;
+      --surface: #17302d;
+      --surface-2: #1c3936;
+      --ink: #eaf4f2;
+      --ink-2: #bfe6df;
+      --text: #d9e2df;
+      --muted: #93a8a4;
+      --accent: #6fc9c0;
+      --accent-light: #8fd8d0;
+      --border: rgba(255, 255, 255, 0.12);
+      --code-bg: #0f221f;
+      --code-text: #cdeae4;
+      --warn-bg: #3a2c12;
+      --warn-border: #c8963f;
+      --warn-text: #f0d9a8;
+      --chip-bg: #1e3a37;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12211f;
+    --surface: #17302d;
+    --surface-2: #1c3936;
+    --ink: #eaf4f2;
+    --ink-2: #bfe6df;
+    --text: #d9e2df;
+    --muted: #93a8a4;
+    --accent: #6fc9c0;
+    --accent-light: #8fd8d0;
+    --border: rgba(255, 255, 255, 0.12);
+    --code-bg: #0f221f;
+    --code-text: #cdeae4;
+    --warn-bg: #3a2c12;
+    --warn-border: #c8963f;
+    --warn-text: #f0d9a8;
+    --chip-bg: #1e3a37;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.65;
+    padding-inline: 0;
+  }
+  h1, h2, h3 { font-family: 'Merriweather', Georgia, serif; color: var(--ink); text-wrap: balance; }
+  a { color: var(--accent); }
+  code { font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    max-width: 1180px;
+    margin: 0 auto;
+    gap: 0;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .topbar__brand { display: flex; align-items: baseline; gap: 0.6rem; }
+  .topbar__brand strong { font-family: 'Merriweather', serif; color: var(--ink); font-size: 1.05rem; }
+  .topbar__brand span { color: var(--muted); font-size: 0.82rem; }
+  .topbar__link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    padding: 2rem 1.25rem 2rem 1.5rem;
+    border-right: 1px solid var(--border);
+  }
+  .sidebar__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.75rem;
+  }
+  .sidebar nav { display: flex; flex-direction: column; gap: 0.1rem; position: sticky; top: 1.5rem; }
+  .sidebar nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.88rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar nav a:hover { background: var(--surface-2); color: var(--ink); }
+  .sidebar nav a.part {
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 0.9rem;
+    padding-left: 0.6rem;
+  }
+  .sidebar nav a.part:first-child { margin-top: 0; }
+
+  /* ---------- Main content ---------- */
+  main { padding: 2.25rem 2rem 6rem; min-width: 0; }
+  .hero { max-width: 62ch; margin-bottom: 2.5rem; }
+  .hero h1 { font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.35rem); margin: 0 0 0.6rem; line-height: 1.2; }
+  .hero p { color: var(--muted); font-size: 1.02rem; margin: 0; }
+
+  section.doc { max-width: 68ch; margin-bottom: 3rem; scroll-margin-top: 1.5rem; }
+  section.doc h2 {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  section.doc h2 .num { font-size: 0.85rem; color: var(--accent); font-family: 'Montserrat', sans-serif; font-weight: 700; }
+  section.doc h3 { font-size: 1.05rem; margin: 1.6rem 0 0.6rem; }
+  section.doc p { margin: 0 0 1rem; }
+  section.doc ul, section.doc ol { margin: 0 0 1rem; padding-left: 1.3rem; }
+  section.doc li { margin-bottom: 0.5rem; }
+  section.doc li:last-child { margin-bottom: 0; }
+  section.doc strong { color: var(--ink); }
+
+  .term { color: var(--ink-2); font-weight: 700; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    margin: 1.1rem 0;
+    box-shadow: var(--shadow);
+  }
+  .card h3 { margin-top: 0; }
+
+  .callout {
+    display: flex;
+    gap: 0.75rem;
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    margin: 1.2rem 0;
+    border: 1px solid var(--warn-border);
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    font-size: 0.92rem;
+  }
+  .callout__icon { flex: none; font-size: 1.1rem; line-height: 1.4; }
+  .callout strong { color: inherit; }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    overflow-x: auto;
+    font-size: 0.84rem;
+    margin: 0.9rem 0;
+    border: 1px solid var(--border);
+  }
+  code.inline {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 0.12rem 0.4rem;
+    border-radius: 5px;
+    font-size: 0.86em;
+  }
+
+  .filetree {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.85;
+    overflow-x: auto;
+    color: var(--text);
+  }
+  .filetree .comment { color: var(--muted); }
+  .filetree .highlight { color: var(--accent); font-weight: 700; }
+
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.6rem;
+    margin-bottom: 1rem;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -0.1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background: var(--chip-bg);
+    color: var(--ink-2);
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1.1rem 0; }
+  .rule {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-size: 0.88rem;
+  }
+  .rule .tag { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+
+  footer.page {
+    max-width: 68ch;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Mobile ---------- */
+  .sidebar-toggle { display: none; }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+    }
+    .sidebar nav { position: static; display: none; }
+    .sidebar.open nav { display: flex; }
+    .sidebar-toggle {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.9rem;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .sidebar__label { display: none; }
+    main { padding: 1.75rem 1.25rem 4rem; }
+    .rule-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="topbar">
+  <div class="topbar__brand"><strong>IGVbuild</strong><span>Contributor Guide</span></div>
+  <a class="topbar__link" href="https://github.com/IGV-Housing/igvbuild-website" target="_blank" rel="noopener">View repo ↗</a>
+</div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" type="button">
+      <span>Contents</span><span aria-hidden="true">▾</span>
+    </button>
+    <p class="sidebar__label">On this page</p>
+    <nav>
+      <a class="part" href="#github-basics">Part 1 — GitHub basics</a>
+      <a href="#what-is-github">What GitHub actually is</a>
+      <a href="#getting-set-up">Getting set up</a>
+      <a href="#everyday-workflow">The everyday workflow</a>
+      <a href="#rules-of-thumb">Rules of thumb</a>
+
+      <a class="part" href="#site-structure">Part 2 — How the site is built</a>
+      <a href="#file-map">File map</a>
+      <a href="#no-template">The no-shared-template quirk</a>
+      <a href="#editing-content">Editing text or images</a>
+
+      <a class="part" href="#previewing">Part 3 — Previewing changes</a>
+
+      <a class="part" href="#minification">Part 4 — CSS/JS minification</a>
+
+      <a class="part" href="#going-live">Part 5 — Going live</a>
+
+      <a class="part" href="#images">Image guidelines</a>
+      <a class="part" href="#help">Getting help</a>
+    </nav>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <h1>Making changes to igvbuild.com without Sarah</h1>
+      <p>This site is plain HTML, CSS and JavaScript — no build framework, nothing to
+      "compile." If you can edit a text file, you can edit this site. This guide covers
+      how GitHub works, and how this specific site is put together.</p>
+    </div>
+
+    <section class="doc" id="github-basics">
+      <h2><span class="num">Part 1</span> GitHub basics</h2>
+
+      <h3 id="what-is-github">What GitHub actually is</h3>
+      <p>
+        <span class="term">Repository ("repo")</span> — the project folder, tracked by
+        Git, with a full history of every change ever made. This site's repo is
+        <code class="inline">IGV-Housing/igvbuild-website</code>.
+      </p>
+      <p><span class="term">Commit</span> — a saved snapshot of changes, with a short
+      message explaining what changed and why.</p>
+      <p><span class="term">Push</span> — uploads your commits to GitHub, where they
+      become visible to everyone and (see Part 5) go live on the site.</p>
+      <p><span class="term">Pull</span> — downloads the latest commits down to your
+      computer. Always pull before you start editing, so you're working from the
+      latest version, not an old copy.</p>
+      <p><span class="term">Branch</span> — a parallel, independent copy of the
+      codebase you can commit to without affecting anything else, until it's merged
+      back in.</p>
+      <p><span class="term">main branch</span> — the live, production version of the
+      site. Whatever is on <code class="inline">main</code> is what visitors see.
+      <strong>Nobody pushes directly to <code class="inline">main</code>.</strong></p>
+      <p><span class="term">staging branch</span> — where everyone does their
+      day-to-day work. You pull, edit, commit, and push here. Sarah reviews what's on
+      <code class="inline">staging</code> and merges it into <code class="inline">main</code>
+      manually when it's ready to go live, so <code class="inline">main</code> never
+      receives unreviewed changes.</p>
+
+      <h3 id="getting-set-up">Getting set up (one-time)</h3>
+      <ol class="steps">
+        <li>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and ask to be added as a collaborator on <code class="inline">IGV-Housing/igvbuild-website</code>.</li>
+        <li>Install <a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a> — a free app that handles every Git step below with buttons, no command line required.</li>
+        <li>Install <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a> (or any text/code editor) to actually edit the files.</li>
+        <li>In GitHub Desktop: <strong>File → Clone Repository</strong>, search for <code class="inline">IGV-Housing/igvbuild-website</code>, and pick a folder on your computer. This downloads the whole site.</li>
+        <li>In GitHub Desktop's branch switcher (top middle of the window), switch from <code class="inline">main</code> to <code class="inline">staging</code>. This is the branch you'll work on from now on — check it any time you're not sure which branch you're on.</li>
+      </ol>
+
+      <h3 id="everyday-workflow">The everyday workflow</h3>
+      <ol class="steps">
+        <li>Open <strong>GitHub Desktop</strong>, confirm the branch switcher says <strong><code class="inline">staging</code></strong> (switch to it if not), then click <strong>Fetch origin</strong> and <strong>Pull origin</strong> if there's anything new — never start editing an old copy.</li>
+        <li>Open the project folder in <strong>VS Code</strong> and make your edits (Part 2 covers how the site is structured).</li>
+        <li><strong>Preview the change locally</strong> before pushing (Part 3) — never push something you haven't seen rendered in a browser.</li>
+        <li>Back in GitHub Desktop, review the diff for every changed file — if something's there you didn't mean to touch, stop and look into it.</li>
+        <li>Write a clear <strong>commit message</strong> ("Update Contractors hero copy," not "changes"), then <strong>Commit to staging</strong>.</li>
+        <li>Click <strong>Push origin</strong>. Your change is now on the <code class="inline">staging</code> branch on GitHub. It is <strong>not live yet</strong> — Sarah reviews <code class="inline">staging</code> and merges it into <code class="inline">main</code> when it's ready, which is what actually publishes it (Part 5).</li>
+      </ol>
+
+      <h3 id="rules-of-thumb">Rules of thumb</h3>
+      <div class="rule-grid">
+        <div class="rule"><span class="tag">Never</span>commit or push directly to <code class="inline">main</code> — always work on <code class="inline">staging</code>. Check the branch switcher before you commit.</div>
+        <div class="rule"><span class="tag">Never</span>"Discard changes" a file unless you're certain you want that work gone for good.</div>
+        <div class="rule"><span class="tag">Never</span>force-push or delete either branch. Stop and ask if GitHub Desktop shows a conflict you don't understand.</div>
+        <div class="rule"><span class="tag">Before pushing</span>preview locally and, for anything visual, get a second pair of eyes on a screenshot.</div>
+      </div>
+    </section>
+
+    <section class="doc" id="site-structure">
+      <h2><span class="num">Part 2</span> How this site is built</h2>
+
+      <h3 id="file-map">File map</h3>
+      <div class="filetree">igvbuild/
+  index.html, howitworks.html, contractors.html, ...  <span class="comment">one file per page</span>
+  igvhomescatalogue/
+    osprey/index.html, summit/index.html, ridgeline/index.html
+  css/
+    style.css        <span class="comment">the real, readable stylesheet — </span><span class="highlight">edit this one</span>
+    style.min.css     <span class="comment">compressed copy every page actually loads</span>
+  js/
+    main.js           <span class="comment">the real, readable script — </span><span class="highlight">edit this one</span>
+    main.min.js        <span class="comment">compressed copy every page actually loads</span>
+  images/             <span class="comment">every image, logo and icon on the site</span></div>
+
+      <h3 id="no-template">The most important quirk: there's no shared template</h3>
+      <p>Because this is plain HTML with no build tooling, the navigation bar, the
+      mega-menu dropdowns, and the footer are <strong>copy-pasted into every single HTML
+      file</strong>. There's no shared <code class="inline">header.html</code> the pages
+      all pull from.</p>
+      <div class="callout">
+        <span class="callout__icon">⚠</span>
+        <span>A change to the nav or footer — a new page link, an updated copyright
+        year — has to be made in <strong>all ~14 HTML files</strong>, not just one.
+        Search-and-replace across files is far more reliable than editing each file by
+        hand. This is exactly the kind of repetitive, error-prone task an AI coding
+        assistant handles well — describe the change once and ask it to apply it
+        everywhere.</span>
+      </div>
+
+      <h3 id="editing-content">Editing text, images, or styles</h3>
+      <p><strong>Text/content</strong> — open the relevant <code class="inline">.html</code> file and change the words between the tags. Tags like <code class="inline">&lt;h1&gt;</code>, <code class="inline">&lt;p&gt;</code>, <code class="inline">&lt;a&gt;</code> are structure — don't delete or rearrange them, just the text inside.</p>
+      <p><strong>Images</strong> — drop the new file into <code class="inline">images/</code>, then update the matching <code class="inline">src="images/your-file.jpg"</code>. See the image guidelines below before you upload anything.</p>
+      <p><strong>Styles</strong> — all visual styling (colors, spacing, fonts, mobile layout) lives in <code class="inline">css/style.css</code>, organized in sections by component. Search for the relevant class name, e.g. <code class="inline">.footer</code>, <code class="inline">.contractors-hero</code>, <code class="inline">.mega-grid</code>.</p>
+    </section>
+
+    <section class="doc" id="previewing">
+      <h2><span class="num">Part 3</span> Previewing changes locally</h2>
+      <p>Don't push a change you haven't seen rendered in a browser. There's no build
+      step, so previewing is simple:</p>
+      <div class="card">
+        <h3>Quickest</h3>
+        <p style="margin-bottom:0">Just double-click the <code class="inline">.html</code> file to open it in your browser. Works for most content and text edits.</p>
+      </div>
+      <div class="card">
+        <h3>More accurate</h3>
+        <p>Needed for anything that depends on the page being served over <code class="inline">http://</code> rather than opened as a raw file. Install <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> once, then from the project folder:</p>
+        <pre>npx serve .</pre>
+        <p style="margin-bottom:0">Open the printed <code class="inline">localhost</code> address. Check both a normal desktop window and a narrow mobile-width window (browser dev tools → toggle device toolbar) — most past bugs on this site were mobile-only layout issues invisible at desktop width.</p>
+      </div>
+    </section>
+
+    <section class="doc" id="minification">
+      <h2><span class="num">Part 4</span> CSS/JS minification — don't skip this</h2>
+      <p>Every page's <code class="inline">&lt;link&gt;</code>/<code class="inline">&lt;script&gt;</code> tag points at <code class="inline">style.min.css</code> and <code class="inline">main.min.js</code> — <strong>not</strong> the readable source files.</p>
+      <div class="callout">
+        <span class="callout__icon">⚠</span>
+        <span>If you edit <code class="inline">style.css</code> or <code class="inline">main.js</code> and don't regenerate the <code class="inline">.min</code> versions, <strong>your change will not appear on the live site</strong> — even though the source file looks correct. This is the single most common way a change silently "doesn't work."</span>
+      </div>
+      <p>Regenerate both after any CSS/JS edit (requires Node.js installed once):</p>
+      <pre>npx clean-css-cli -O2 -o css/style.min.css css/style.css
+npx terser js/main.js -o js/main.min.js -c -m --comments false</pre>
+      <p style="margin-bottom:0">Run from the project's root folder, re-check the site locally, then commit <strong>both</strong> the source file and its regenerated <code class="inline">.min</code> file together, in the same commit.</p>
+    </section>
+
+    <section class="doc" id="going-live">
+      <h2><span class="num">Part 5</span> Going live</h2>
+      <p>Pushing to <code class="inline">staging</code> does <strong>not</strong> put
+      your change on igvbuild.com. Two things have to happen first:</p>
+      <ol class="steps">
+        <li><strong>Sarah reviews <code class="inline">staging</code></strong> and merges it into <code class="inline">main</code>. This is the approval step — nothing reaches <code class="inline">main</code> without going through her.</li>
+        <li>Whatever then actually publishes a merge into <code class="inline">main</code> onto igvbuild.com — see the placeholder below.</li>
+      </ol>
+      <p>If your change doesn't appear on the live site after a while, check whether it's
+      actually been <strong>merged into <code class="inline">main</code></strong> yet,
+      not just pushed to <code class="inline">staging</code>.</p>
+      <div class="callout">
+        <span class="callout__icon">📝</span>
+        <span><strong>Placeholder — needs to be filled in.</strong> It's not clear from
+        the repository alone how a merge into <code class="inline">main</code> then
+        results in igvbuild.com actually updating. If it's hosted on Netlify, Vercel,
+        Cloudflare Pages or similar, that service auto-deploys on push — this section
+        should name which one and roughly how long it takes. If it's a manual
+        FTP/upload step, that process needs to be written out here so changes don't sit
+        merged-but-not-live indefinitely.</span>
+      </div>
+    </section>
+
+    <section class="doc" id="images">
+      <h2>Image guidelines</h2>
+      <p>Learned the hard way during a site-wide performance pass — keep these in mind
+      for any new image:</p>
+      <ul>
+        <li><strong>Format</strong> — JPG for photos, PNG only when you genuinely need transparency (a cutout graphic, a logo with no background). A photo saved as PNG is often 5–10× larger than the same photo as JPG, for no visual benefit.</li>
+        <li><strong>Size</strong> — resize to roughly the largest size it'll actually display at before uploading. Don't drop a 5000px-wide camera photo in for a 400px-wide thumbnail.</li>
+        <li><strong>Clean up after yourself</strong> — if you replace an image, delete the old file once you've confirmed nothing else references it: <code class="inline">grep -r "old-filename" *.html</code> from the project root will tell you.</li>
+      </ul>
+    </section>
+
+    <section class="doc" id="help">
+      <h2>Getting help</h2>
+      <p style="margin-bottom:0">If something goes wrong — a merge conflict, an
+      accidental push you want to undo, a "detached HEAD" message you don't understand —
+      stop and ask rather than clicking through prompts you're unsure about. Most Git
+      mistakes are recoverable if caught early, and much harder to fix once several more
+      commits pile on top.</p>
+    </section>
+
+    <footer class="page">
+      Also available as <code class="inline">CONTRIBUTING.md</code> in the repository root.
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  try {
+    var toggle = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+      });
+    }
+  } catch (e) {}
+})();
+</script>
