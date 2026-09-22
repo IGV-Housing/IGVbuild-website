@@ -4131,6 +4131,11 @@ body.contact-page .contact-layout { margin-top: 0.5rem; }
      instead of leaving a gap where the columns split. */
   .stat-item:nth-child(3)::after { left: 0; right: -1.25rem; }
   .stat-item:nth-child(4)::after { left: -1.25rem; right: 0; }
+  /* Same fix for the vertical divider on the right column: it only spans
+     its own item's box, so it breaks across the row gap. Extend each half
+     into the gap so the two rows read as one continuous line. */
+  .stat-item:nth-child(2)::before { bottom: calc(var(--stat-row-gap) / -2); }
+  .stat-item:nth-child(4)::before { top: calc(var(--stat-row-gap) / -2); }
   .started { justify-content: flex-start; }
   .started__content { max-width: 100%; }
   .section-started::after { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.55) 70%, rgba(0, 0, 0, 0.65) 100%); }
