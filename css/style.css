@@ -1469,12 +1469,25 @@ nav.links a.cta-pill::after { display: none; }
 .footer__col ul { display: flex; flex-direction: column; gap: 1.25rem; }
 
 .footer__link {
+  position: relative;
+  display: inline-block;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.4px;
 }
 
-.footer__link:hover { opacity: 0.8; }
+.footer__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--ink-light);
+  transition: width 0.25s;
+}
+
+.footer__link:hover::after { width: 100%; }
 
 .footer__social { display: flex; gap: 0.875rem; align-items: center; margin-top: 0.5rem; }
 .footer__social a { transition: transform 0.2s; }
@@ -1488,11 +1501,29 @@ nav.links a.cta-pill::after { display: none; }
   gap: 1rem;
   margin-top: 5rem;
   padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 0.8rem;
 }
 
 .footer__bottom-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
-.footer__bottom-links a:hover { opacity: 0.8; }
+
+.footer__bottom-links a {
+  position: relative;
+  display: inline-block;
+}
+
+.footer__bottom-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--ink-light);
+  transition: width 0.25s;
+}
+
+.footer__bottom-links a:hover::after { width: 100%; }
 
 /* =========================================================
    Placeholder page template
