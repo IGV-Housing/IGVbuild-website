@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---------- Hero background video: defer until after page load so the
+     static poster image (not an external Vimeo iframe) is what the browser
+     renders first ---------- */
+  var heroBg = document.getElementById('heroVideoBg');
+  if (heroBg) {
+    var loadHeroVideo = function () {
+      var src = heroBg.getAttribute('data-video-src');
+      if (!src) return;
+      var iframe = document.createElement('iframe');
+      iframe.className = 'hero__bg-frame';
+      iframe.src = src;
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('title', 'Introducing IGV Build Systems');
+      heroBg.appendChild(iframe);
+    };
+    if (document.readyState === 'complete') {
+      loadHeroVideo();
+    } else {
+      window.addEventListener('load', loadHeroVideo);
+    }
+  }
+
   /* ---------- Nav: mega dropdown triggers (desktop + mobile) ---------- */
   var triggers = document.querySelectorAll('.divisions[data-dropdown]');
   var megas = document.querySelectorAll('.mega[data-panel]');
