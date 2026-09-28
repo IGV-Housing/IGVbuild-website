@@ -3413,17 +3413,14 @@ body.contact-page .contact-layout { margin-top: 0.5rem; }
   min-height: 320px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
   color: var(--cream);
-}
-
-.brochure-cta img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
+  /* The only photo asset on hand for this band is a small nav-dropdown
+     thumbnail (312x342) — too small to stretch full-width without looking
+     pixelated. Use a brand-color gradient as the base and show the photo
+     contained, near its native size, instead of blown up as a cover image. */
+  background: linear-gradient(120deg, var(--slate-dark) 0%, var(--ink) 100%);
 }
 
 .brochure-cta::before {
@@ -3431,7 +3428,7 @@ body.contact-page .contact-layout { margin-top: 0.5rem; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(20, 35, 46, 0.94) 0%, rgba(20, 35, 46, 0.8) 38%, rgba(20, 35, 46, 0.25) 68%, rgba(20, 35, 46, 0) 100%);
+  background: radial-gradient(circle at 88% 25%, rgba(88, 180, 173, 0.22), transparent 55%);
 }
 
 .brochure-cta__content {
@@ -3439,6 +3436,24 @@ body.contact-page .contact-layout { margin-top: 0.5rem; }
   z-index: 2;
   max-width: 560px;
   padding: 3rem 2.5rem 3rem calc(var(--gutter) + max(0px, (100vw - var(--container-max)) / 2));
+}
+
+.brochure-cta__media {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  width: min(280px, 26vw);
+  aspect-ratio: 312 / 342;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-right: clamp(1.5rem, 5vw, 5rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.brochure-cta__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 700px) {
+  .brochure-cta__media { display: none; }
 }
 
 .brochure-cta .eyebrow--teal { color: var(--ink-light); }
