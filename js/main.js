@@ -23,6 +23,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ---------- Lazy background videos (e.g. the SmartCore site plan):
+     these sit below the fold, so wait until the element actually scrolls
+     into view before loading the Vimeo iframe, rather than on page load ---------- */
+  var lazyVideoEls = document.querySelectorAll('.js-lazy-video[data-video-src]');
+  if (lazyVideoEls.length) {
+    var loadLazyVideo = function (el) {
+      var src = el.getAttribute('data-video-src');
+      if (!src || el.querySelector('.lazy-video-frame')) return;
+      var iframe = document.createElement('iframe');
+      iframe.className = 'lazy-video-frame';
+      iframe.src = src;
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      var img = el.querySelector('img');
+      iframe.setAttribute('title', img ? img.alt : 'Video');
+      el.appendChild(iframe);
+      /* Vimeo's background player letterboxes when the video's native aspect
+         ratio doesn't exactly match this square container, which let the
+         poster image show through the gaps. Hide it once the video is in,
+         so any letterbox area falls back to the container's own background
+         instead of a mismatched photo. */
+      if (img) img.style.display = 'none';
+    };
+    if ('IntersectionObserver' in window) {
+      var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          loadLazyVideo(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '200px' });
+      lazyVideoEls.forEach(function (el) { lazyVideoObserver.observe(el); });
+    } else {
+      lazyVideoEls.forEach(loadLazyVideo);
+    }
+  }
+
   /* ---------- Nav: mega dropdown triggers (desktop + mobile) ---------- */
   var triggers = document.querySelectorAll('.divisions[data-dropdown]');
   var megas = document.querySelectorAll('.mega[data-panel]');
@@ -120,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById('videoModal');
   var modalFrame = document.getElementById('videoModalFrame');
   var videoTrigger = document.getElementById('videoBandTrigger');
-  var VIDEO_SRC = 'https://player.vimeo.com/video/1226677758?h=a111460b1a&autoplay=1&byline=0&title=0';
+  var VIDEO_SRC = 'https://player.vimeo.com/video/1212682242?autoplay=1&byline=0&title=0';
 
   function openModal(src) {
     if (!modal || !modalFrame) return;
