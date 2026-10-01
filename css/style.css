@@ -2749,7 +2749,10 @@ body.contact-page .contact-layout { margin-top: 0.5rem; }
   padding: 1.25rem 1.25rem 1.4rem;
   background: rgba(88, 180, 173, 0.08);
   border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
+.howitworks-quality__stats.is-visible .howitworks-quality__stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); border-color: transparent; }
 
 .howitworks-quality__stat-icon {
   display: inline-flex;
