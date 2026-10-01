@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById('videoModal');
   var modalFrame = document.getElementById('videoModalFrame');
   var videoTrigger = document.getElementById('videoBandTrigger');
-  var VIDEO_SRC = 'https://player.vimeo.com/video/1226677758?autoplay=1&byline=0&title=0';
+  var VIDEO_SRC = 'https://player.vimeo.com/video/1232152472?autoplay=1&byline=0&title=0';
 
   function openModal(src) {
     if (!modal || !modalFrame) return;
